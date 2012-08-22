@@ -17,18 +17,24 @@
         %thead
           %tr
             %th Date
+            %th IP
             %th Player Name
+            %th Otserv
             %th FPS
             %th Graphics Card
+            %th Graphics Version
             %th Version
             %th Commit
         %tbody
           - @reports.each do |report|
             %tr
               %td= report.date.asctime
+              %td= report.ip
               %td= report.player_name
+              %td= report.otserv_host
               %td= "#{report.fps}/#{report.max_fps}"
-              %td= "#{report.graphics_vendor} #{report.graphics_renderer} #{report.graphics_version}"
+              %td= "#{report.graphics_vendor} #{report.graphics_renderer}"
+              %td= "#{report.graphics_version}"
               %td= "#{report.build_version} #{report.build_revision}"
               %td= "#{report.build_commit}"
     #footer
