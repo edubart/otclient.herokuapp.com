@@ -4,3 +4,9 @@ development:
       database: mongoid_dev
       hosts:
         - localhost:27017
+production:
+  sessions:
+    default:
+      database: heroku_app6918713
+      hosts:
+        - ds037387.mongolab.com:37387
