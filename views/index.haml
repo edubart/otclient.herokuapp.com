@@ -17,7 +17,6 @@
         %thead
           %tr
             %th Date
-            %th IP
             %th Player Name
             %th Otserv
             %th FPS
@@ -29,7 +28,6 @@
           - @reports.each do |report|
             %tr
               %td= report.date.asctime
-              %td= report.ip
               %td= report.player_name
               %td= report.otserv_host
               %td= "#{report.fps}/#{report.max_fps}"
