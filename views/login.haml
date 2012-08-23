@@ -1,0 +1,56 @@
+!!! 5
+%html{:lang => 'en'}
+  %head
+    %title Login
+    = haml :_head, :layout => false
+    %style{:type => 'text/css'}
+      :css
+        /* Override some defaults */
+        body {
+          padding-top: 40px;
+        }
+        html, body {
+          background-color: #eee;
+        }
+        .container {
+          width: 300px;
+        }
+
+        /* The white background content wrapper */
+        .container > .content {
+          background-color: #fff;
+          padding: 20px;
+          margin: 0 -20px;
+          -webkit-border-radius: 10px 10px 10px 10px;
+             -moz-border-radius: 10px 10px 10px 10px;
+                  border-radius: 10px 10px 10px 10px;
+          -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+             -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+                  box-shadow: 0 1px 2px rgba(0,0,0,.15);
+        }
+
+        .login-form {
+          margin-left: 65px;
+        }
+
+        legend {
+          margin-right: -50px;
+          font-weight: bold;
+          color: #404040;
+        }
+
+  %body
+    .container
+      .content
+        .row
+          .login-form
+            %h2 Login
+            %form{ :action => "/login", :method => "post"}
+              %fieldset#inputs
+                %p
+                  %label Username
+                  %input.text-long{ :name => "username", :type => "text", :autofocus => '', :required => ''}
+                %p
+                  %label Password
+                  %input.text-long{ :name => "password", :type => "password", :required => ''}
+                %input.button-submit{ :name => "submit", :type => "submit", :value => "Login"}

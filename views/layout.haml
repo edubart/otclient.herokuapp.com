@@ -1,0 +1,19 @@
+!!! 5
+%html{:lang => 'en'}
+  %head
+    %title Otclient Stats
+    = haml :_head, :layout => false
+  %body
+    .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container
+          .nav-collapse.collapse
+            %ul.nav
+              = nav_link '/reports', 'Last Reports'
+              = nav_link '/online', 'Online'
+              = nav_link '/otservs', 'Otservs'
+
+          .btn.pull-right= link_to '/logout', 'Logout'
+    .container
+      =yield
+      .clear

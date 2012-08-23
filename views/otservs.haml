@@ -1,0 +1,11 @@
+%h1 Otservs
+%table.datatable.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th Host
+      %th Players
+  %tbody
+    - @otservs.each do |otserv|
+      %tr
+        %td= otserv.host
+        %td= otserv.num_players

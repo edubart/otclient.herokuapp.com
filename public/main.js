@@ -1,6 +1,7 @@
 $(document).ready(function() {
-  $('#reports').dataTable( {
-    "bJQueryUI": true,
+  $('.datatable').dataTable( {
     "bPaginate": false,
   } );
-} );
+
+  $("#login").uniform();
+});
