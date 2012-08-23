@@ -61,7 +61,7 @@ end
 
 get '/online' do
   login_required
-  @reports = Report.desc(:date).where(:date.gte => Time.now - 300)
+  @reports = Report.desc(:date).where(:date.gte => Time.now - 90)
   haml :online
 end
 
@@ -74,7 +74,7 @@ get '/players' do
     player = Player.new
     player.name = name
     player.otserv_host = player_reports.last.otserv_host
-    player.online = player_reports.last.date >= Time.now - 300
+    player.online = player_reports.last.date >= Time.now - 90
     player.minutes_played = player_reports.count
     @players << player
   end
