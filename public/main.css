@@ -5,3 +5,13 @@ body {
 .container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
   width: 90%;
 }
+
+.on {
+  color: green;
+  font-weight: bold;
+}
+
+.off {
+  color: red;
+  font-weight: bold;
+}

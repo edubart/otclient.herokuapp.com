@@ -35,4 +35,12 @@ helpers do
     end
     "<li #{liattrs}><a href=\"#{url}\" #{attributes}>#{text}</a></li>"
   end
+
+  def minutes_to_units(seconds)
+    '%d days, %d hours, %d minutes' %
+      [24,60].reverse.inject([seconds]) {|result, unitsize|
+        result[0,0] = result.shift.divmod(unitsize)
+        result
+      }
+  end
 end

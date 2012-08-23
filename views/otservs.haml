@@ -3,9 +3,11 @@
   %thead
     %tr
       %th Host
+      %th Time Played
       %th Players
   %tbody
     - @otservs.each do |otserv|
       %tr
         %td= otserv.host
+        %td= otserv.minutes_played.to_s + " minutes"
         %td= otserv.num_players

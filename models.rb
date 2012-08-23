@@ -7,9 +7,8 @@ end
 class Report
   include Mongoid::Document
 
-  belongs_to :user
-
   field :uid, type: String
+  field :report_delay, type: Integer
   field :ip, type: String
   field :date, type: Time
   field :os, type: String
@@ -35,5 +34,9 @@ class Report
 end
 
 class Otserv
-  attr_accessor :host, :num_players
+  attr_accessor :host, :num_players, :minutes_played
+end
+
+class Player
+  attr_accessor :name, :otserv_host, :minutes_played, :online
 end
