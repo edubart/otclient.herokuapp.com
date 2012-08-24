@@ -1,8 +1,11 @@
 require 'sinatra'
 require 'haml'
+require 'rack-flash'
 require './configs'
 require './helpers'
 require './models'
+
+use Rack::Flash
 
 # Index
 get '/' do
@@ -72,7 +75,7 @@ post '/login' do
     session[:admin] = admin
     redirect '/'
   else
-    flash("Username or password incorrect")
+    flash[:notice] = "Username or password incorrect"
     redirect '/login'
   end
 end
@@ -99,6 +102,17 @@ get '/instances' do
   login_required
   @instances = Instance.desc(:updated_on)
   haml :instances
+end
+
+get '/instance/:id' do
+  login_required
+  @instance = Instance.where(id: params[:id]).first
+  if @instance
+    haml :instance
+  else
+    flash[:notice] = "Invalid instance"
+    redirect '/instances'
+  end
 end
 
 get '/players' do

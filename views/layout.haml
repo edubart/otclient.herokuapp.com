@@ -16,5 +16,9 @@
 
           .btn.pull-right= link_to '/logout', 'Logout'
     .container
+      - if flash[:notice]
+        .alert
+          %button{:type=>"button", :class=>"close", :'data-dismiss'=>"alert"}×
+          = flash[:notice]
       =yield
       .clear

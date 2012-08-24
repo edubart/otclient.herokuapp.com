@@ -238,9 +238,15 @@ class Instance
 
   def last_player
     @last_player ||= Player.where(id: last_player_id).first
+    @last_player ||= Player.new
+    return @last_player
   end
 
   def online
     return self.updated_on >= Time.now - 90
+  end
+
+  def otservs
+    players.collect { |player| player.otserv }
   end
 end

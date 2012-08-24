@@ -1,6 +1,8 @@
 $(document).ready(function() {
-  $('.datatable').dataTable( {
+  $('.datatable').dataTable({
     "bPaginate": false,
     "aaSorting": [],
-  } );
+  });
+
+  $(".alert").alert();
 });

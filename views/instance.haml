@@ -1,0 +1,25 @@
+%legend Instance
+%label Updated on:
+= @instance.updated_on
+
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th Player Name
+      %th Otserv
+  %tbody
+    - @instance.players.each do |player|
+      %tr
+        %td= player.name
+        %td= player.otserv.name
+
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th Player Name
+      %th Otserv
+  %tbody
+    - @instance.players.each do |player|
+      %tr
+        %td= player.name
+        %td= player.otserv.name

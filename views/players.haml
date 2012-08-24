@@ -9,7 +9,7 @@
   %tbody
     - @players.each do |player|
       %tr
-        %td= player.name
+        %td= instance_link player.instance.id, player.name
         %td= player.otserv.name
         %td= player.minutes_played
         - if player.online

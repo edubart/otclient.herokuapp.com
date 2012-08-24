@@ -17,10 +17,6 @@ helpers do
     end
   end
 
-  def flash(msg)
-    session[:flash] = msg
-  end
-
   def link_to(url,text=url,opts={})
     attributes = ""
     opts.each { |key,value| attributes << key.to_s << "=\"" << value << "\" "}
@@ -34,6 +30,10 @@ helpers do
       liattrs = 'class="active"'
     end
     "<li #{liattrs}><a href=\"#{url}\" #{attributes}>#{text}</a></li>"
+  end
+
+  def instance_link(uid, text)
+    "<a href=\"/instance/#{uid}\">#{text}</a>"
   end
 
   def minutes_to_units(seconds)
