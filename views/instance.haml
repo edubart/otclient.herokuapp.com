@@ -1,25 +1,83 @@
-%legend Instance
-%label Updated on:
-= @instance.updated_on
+.span6.center
+  %legend Instance
+  %table.table.table-bordered.table-striped
+    %tbody
+      %tr
+        %td{:style => "width: 160px;"} First login:
+        %td= @instance.created_on
+      %tr
+        %td{:style => "width: 160px;"} last login:
+        %td= @instance.updated_on
+      %tr
+        %td Minutes played:
+        %td= @instance.minutes_played
+      %tr
+        %td IP:
+        %td= @instance.ip
+      %tr
+        %td Operational System:
+        %td= @instance.os
+      %tr
+        %td Graphics Vendor:
+        %td= @instance.graphics_vendor
+      %tr
+        %td Graphics Card:
+        %td= @instance.graphics_renderer
+      %tr
+        %td Graphics Version:
+        %td= @instance.graphics_version
+      %tr
+        %td Fullscreen:
+        %td= @instance.fullscreen
+      %tr
+        %td OpenGL Painter:
+        %td= @instance.painter_engine
+      %tr
+        %td Build Revision:
+        %td= @instance.build_revision
+      %tr
+        %td Build Date:
+        %td= @instance.build_date
+      %tr
+        %td Build Commit:
+        %td= @instance.build_commit
+      %tr
+        %td Display Size:
+        %td= "#{@instance.display_width}x#{@instance.display_height}"
+      %tr
+        %td Window Size:
+        %td= "#{@instance.window_width}x#{@instance.window_height}"
+      %tr
+        %td Average FPS:
+        %td= @instance.average_fps
+      %tr
+        %td Last FPS:
+        %td= @instance.fps
+      %tr
+        %td Maximum FPS:
+        %td= @instance.max_fps
+      %tr
+        %td Minimun FPS:
+        %td= @instance.min_fps
+      %tr
+        %td FPS History:
+        %td= @instance.fps_history * " "
 
+%legend Players
 %table.table.table-bordered.table-striped
   %thead
     %tr
       %th Player Name
       %th Otserv
+      %th Minutes Played
+      %th Online
   %tbody
     - @instance.players.each do |player|
       %tr
         %td= player.name
         %td= player.otserv.name
-
-%table.table.table-bordered.table-striped
-  %thead
-    %tr
-      %th Player Name
-      %th Otserv
-  %tbody
-    - @instance.players.each do |player|
-      %tr
-        %td= player.name
-        %td= player.otserv.name
+        %td= player.minutes_played
+        - if player.online
+          %td.on ON
+        - else
+          %td.off OFF

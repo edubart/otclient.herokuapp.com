@@ -2,10 +2,6 @@ body {
   padding-top: 60px;
 }
 
-.container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
-  width: 90%;
-}
-
 .on {
   color: green;
   font-weight: bold;
@@ -14,4 +10,21 @@ body {
 .off {
   color: red;
   font-weight: bold;
+}
+
+.center {
+  margin: 0 auto !important;
+  float: none !important;
+}
+
+.footer {
+  padding: 30px 0;
+  margin-top: 70px;
+  border-top: 1px solid #E5E5E5;
+  background-color: whiteSmoke;
+}
+
+.footer p {
+  margin-bottom: 0;
+  color: #777;
 }

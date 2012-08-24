@@ -191,7 +191,15 @@ class Instance
     fps_history.each do |fps|
       sum += fps
     end
-    return fps/fps_history.count
+    return sum/fps_history.count
+  end
+
+  def min_fps
+    fps_history.min
+  end
+
+  def max_fps
+    fps_history.max
   end
 
   def fps
@@ -239,7 +247,6 @@ class Instance
   def last_player
     @last_player ||= Player.where(id: last_player_id).first
     @last_player ||= Player.new
-    return @last_player
   end
 
   def online
@@ -248,5 +255,13 @@ class Instance
 
   def otservs
     players.collect { |player| player.otserv }
+  end
+
+  def minutes_played
+    sum = 0
+    players.each do |player|
+      sum += player.minutes_played
+    end
+    sum
   end
 end

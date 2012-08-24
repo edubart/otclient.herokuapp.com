@@ -5,7 +5,6 @@
       %th Player Name
       %th Otserv
       %th FPS
-      %th Graphics Vendor
       %th Graphics Card
       %th Graphics Version
       %th Version
@@ -14,10 +13,9 @@
   %tbody
     - @instances.each do |instance|
       %tr
-        %td= instance.last_player.name
+        %td= instance_link instance.id, instance.last_player.name
         %td= instance.last_player.otserv.name
         %td= "#{instance.fps}"
-        %td= "#{instance.graphics_vendor}"
         %td= "#{instance.graphics_renderer}"
         %td= "#{instance.graphics_version}"
         %td= "#{instance.build_version} #{instance.build_revision}"
