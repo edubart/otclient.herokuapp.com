@@ -1,0 +1,28 @@
+%h1 Instances
+%table.datatable.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th Player Name
+      %th Otserv
+      %th FPS
+      %th Graphics Vendor
+      %th Graphics Card
+      %th Graphics Version
+      %th Version
+      %th Commit
+      %th Online
+  %tbody
+    - @instances.each do |instance|
+      %tr
+        %td= instance.last_player.name
+        %td= instance.last_player.otserv.name
+        %td= "#{instance.fps}/#{instance.max_fps}"
+        %td= "#{instance.graphics_vendor}"
+        %td= "#{instance.graphics_renderer}"
+        %td= "#{instance.graphics_version}"
+        %td= "#{instance.build_version} #{instance.build_revision}"
+        %td= "#{instance.build_commit}"
+        - if instance.online
+          %td.on ON
+        - else
+          %td.off OFF

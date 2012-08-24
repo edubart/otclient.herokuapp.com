@@ -19,6 +19,42 @@ post '/report' do
   report.date = Time.now
   report.ip = request.ip
   report.save()
+
+  otserv = nil
+  world = nil
+  instance = nil
+  player = nil
+
+  if report.uid then
+    instance = Instance.get(report.uid)
+    instance.process_report(report)
+    instance.save
+  else
+    next
+  end
+
+  if report.otserv_host then
+    otserv = Otserv.get(report.otserv_host)
+    otserv.process_report(report)
+    otserv.save
+  end
+
+  if otserv and report.world_name then
+    world = World.get(otserv, report.world_name)
+    world.process_report(report)
+    world.save
+  end
+
+  if otserv and report.player_name then
+    player = Player.get(otserv, report.player_name)
+    player.process_report(report)
+    player.world = world
+    player.instance = instance
+    player.save
+
+    instance.last_player = player
+    instance.save
+  end
 end
 
 # Authentication
@@ -48,52 +84,31 @@ end
 
 # Admin only
 get '/dashboard' do
-  redirect '/reports'
+  redirect '/instances'
   #login_required
   #haml :dashboard
 end
 
 get '/reports' do
   login_required
-  @reports = Report.desc(:date).limit(100)
+  @reports = Report.desc(:date)
   haml :reports
 end
 
-get '/online' do
+get '/instances' do
   login_required
-  @reports = Report.desc(:date).where(:date.gte => Time.now - 90)
-  haml :online
+  @instances = Instance.desc(:updated_on)
+  haml :instances
 end
 
 get '/players' do
   login_required
-  player_names = Report.all.distinct(:player_name)
-  @players = Array.new
-  player_names.each do |name|
-    player_reports = Report.where(player_name: name)
-    player = Player.new
-    player.name = name
-    player.otserv_host = player_reports.last.otserv_host
-    player.online = player_reports.last.date >= Time.now - 90
-    player.minutes_played = player_reports.count
-    @players << player
-  end
+  @players = Player.all.desc(:updated_on)
   haml :players
 end
 
 get '/otservs' do
   login_required
-
-  otserv_hosts = Report.all.distinct(:otserv_host)
-  @otservs = Array.new
-  otserv_hosts.each do |host|
-    otserv_reports = Report.where(otserv_host: host).distinct(:player_name)
-    otserv = Otserv.new
-    otserv.host = host
-    otserv.num_players = otserv_reports.count
-    otserv.minutes_played = Report.where(otserv_host: host).count
-    @otservs << otserv
-  end
-
+  @otservs = Otserv.all.desc(:updated_on)
   haml :otservs
 end

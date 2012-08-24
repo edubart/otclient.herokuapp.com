@@ -10,7 +10,7 @@
     - @players.each do |player|
       %tr
         %td= player.name
-        %td= player.otserv_host
+        %td= player.otserv.name
         %td= player.minutes_played.to_s + ' minutes'
         - if player.online
           %td.on ON
