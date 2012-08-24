@@ -4,14 +4,14 @@
     %tr
       %th Player Name
       %th Otserv
-      %th Time Played
+      %th Minutes Played
       %th Online
   %tbody
     - @players.each do |player|
       %tr
         %td= player.name
         %td= player.otserv.name
-        %td= player.minutes_played.to_s + ' minutes'
+        %td= player.minutes_played
         - if player.online
           %td.on ON
         - else
