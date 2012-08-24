@@ -25,7 +25,7 @@ post '/report' do
   instance = nil
   player = nil
 
-  if report.uid then
+  if report.uid and report.uid.length > 0 then
     instance = Instance.get(report.uid)
     instance.process_report(report)
     instance.save
@@ -33,19 +33,19 @@ post '/report' do
     next
   end
 
-  if report.otserv_host then
+  if report.otserv_host and report.otserv_host.length > 0 then
     otserv = Otserv.get(report.otserv_host)
     otserv.process_report(report)
     otserv.save
   end
 
-  if otserv and report.world_name then
+  if otserv and report.world_name and report.world_name.length > 0 then
     world = World.get(otserv, report.world_name)
     world.process_report(report)
     world.save
   end
 
-  if otserv and report.player_name then
+  if otserv and report.player_name and report.player_name.length > 0 then
     player = Player.get(otserv, report.player_name)
     player.process_report(report)
     player.world = world

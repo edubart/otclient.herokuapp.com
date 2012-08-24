@@ -102,7 +102,7 @@ class World
   def self.get(otserv, name)
     world = self.where(otserv: otserv, name: name).first
     if not world then
-      world = self.create(:name => name)
+      world = self.create(:otserv => otserv, :name => name)
     end
     return world
   end
