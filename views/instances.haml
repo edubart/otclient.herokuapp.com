@@ -13,8 +13,12 @@
   %tbody
     - @instances.each do |instance|
       %tr
-        %td= instance_link instance.id, instance.last_player.name
-        %td= instance.last_player.otserv.name
+        - if instance.last_player
+          %td= instance_link instance.id, instance.last_player.name
+          %td= instance.last_player.otserv ? instance.last_player.otserv.name : "null"
+        - else
+          %td= instance_link instance.id, "null"
+          %td null
         %td= "#{instance.fps}"
         %td= "#{instance.graphics_renderer}"
         %td= "#{instance.graphics_version}"

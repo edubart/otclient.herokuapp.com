@@ -241,12 +241,11 @@ class Instance
   end
 
   def last_player=(player)
-    last_player_id = player.id
+    self[:last_player_id] = player.id
   end
 
   def last_player
-    @last_player ||= Player.where(id: last_player_id).first
-    @last_player ||= Player.new
+    @last_player ||= Player.where(id: self[:last_player_id]).first
   end
 
   def online
