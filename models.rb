@@ -50,8 +50,6 @@ class Otserv
   field :name, type: String
   field :protocol, type: Integer
 
-  index({ hosts: 1 }, { unique: true })
-
   def host
     return hosts.first
   end
