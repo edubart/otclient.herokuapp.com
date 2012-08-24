@@ -15,9 +15,9 @@ end
 
 # Reporting
 post '/report' do
-  #report = Report.create(params)
-  #report.date = Time.now
-  #report.ip = request.ip
+  report = Report.create(params)
+  report.date = Time.now
+  report.ip = request.ip
   #report.save()
 
   otserv = nil

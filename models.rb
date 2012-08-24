@@ -50,6 +50,8 @@ class Otserv
   field :name, type: String
   field :protocol, type: Integer
 
+  index({ hosts: 1 })
+
   def host
     return hosts.first
   end
@@ -97,7 +99,7 @@ class World
   field :host, type: String
   field :port, type: Integer
 
-  index({ otserv: 1, name: 1 }, { unique: true })
+  index({ otserv_id: 1, name: 1 }, { unique: true })
 
   def self.get(otserv, name)
     world = self.where(otserv: otserv, name: name).first
@@ -130,7 +132,7 @@ class Player
   field :updates_count, type: Integer, default: -> { 0 }
   field :name, type: String
 
-  index({ otserv: 1, name: 1 }, { unique: true })
+  index({ otserv_id: 1, name: 1 }, { unique: true })
 
   def self.get(otserv, name)
     player = self.where(otserv: otserv, name: name).first
