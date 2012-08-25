@@ -32,11 +32,13 @@ helpers do
     "<li #{liattrs}><a href=\"#{url}\" #{attributes}>#{text}</a></li>"
   end
 
-  def instance_link(uid, text)
+  def instance_link(uid, text=uid)
+    text = h(text)
     "<a href=\"/instance/#{uid}\">#{text}</a>"
   end
 
-  def otserv_link(uid, text)
+  def otserv_link(uid, text=uid)
+    text = h(text)
     "<a href=\"/otserv/#{uid}\">#{text}</a>"
   end
 

@@ -242,7 +242,7 @@ class Instance
 
   def compact_graphics_renderer
     graphics = self[:graphics_renderer]
-    graphics = graphics.gsub("Microsoft Corporation ", "")
+    graphics = graphics.gsub("Microsoft Corporation - ", "")
     graphics = graphics.gsub("Express Chipset Family", "")
     graphics
   end

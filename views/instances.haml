@@ -13,7 +13,7 @@
     - @instances.each do |instance|
       %tr
         - if instance.last_player
-          %td= instance_link instance.id, h(instance.last_player.name)
+          %td= instance_link instance.id, instance.last_player.name
         - else
           %td= instance_link instance.id, "null"
         %td= "#{instance.fps}"

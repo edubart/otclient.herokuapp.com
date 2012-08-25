@@ -5,9 +5,11 @@
       %th Host
       %th Minutes Played
       %th Players
+      %th Protocol
   %tbody
     - @otservs.each do |otserv|
       %tr
-        %td= otserv_link otserv.id, h(otserv.host)
+        %td= otserv_link otserv.id, otserv.name
         %td= otserv.minutes_played
         %td= otserv.num_players
+        %td= otserv.protocol
