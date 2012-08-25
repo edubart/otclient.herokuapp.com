@@ -28,3 +28,9 @@ body {
   margin-bottom: 0;
   color: #777;
 }
+
+.datatable {
+  margin: 0 auto;
+  clear: both;
+  width: 100%;
+}
