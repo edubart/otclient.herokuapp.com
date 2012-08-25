@@ -2,8 +2,7 @@
 %table.datatable.table.table-bordered.table-striped
   %thead
     %tr
-      %th Player Name
-      %th Otserv
+      %th Last Player
       %th FPS
       %th Graphics Card
       %th Graphics Version
@@ -15,12 +14,10 @@
       %tr
         - if instance.last_player
           %td= instance_link instance.id, instance.last_player.name
-          %td= instance.last_player.otserv ? instance.last_player.otserv.name : "null"
         - else
           %td= instance_link instance.id, "null"
-          %td null
         %td= "#{instance.fps}"
-        %td= "#{instance.graphics_renderer}"
+        %td= "#{instance.compact_graphics_renderer}"
         %td= "#{instance.graphics_version}"
         %td= "#{instance.build_version} #{instance.build_revision}"
         %td= "#{instance.build_commit}"

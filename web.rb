@@ -18,7 +18,7 @@ end
 
 # Reporting
 post '/report' do
-  report = Report.create(params)
+  report = Report.new(params)
   report.date = Time.now
   report.ip = request.ip
   #report.save()
@@ -87,9 +87,8 @@ end
 
 # Admin only
 get '/dashboard' do
-  redirect '/instances'
-  #login_required
-  #haml :dashboard
+  login_required
+  haml :dashboard
 end
 
 get '/reports' do
@@ -111,6 +110,17 @@ get '/instance/:id' do
     haml :instance
   else
     flash[:notice] = "Invalid instance"
+    redirect '/instances'
+  end
+end
+
+get '/otserv/:id' do
+  login_required
+  @otserv = Otserv.where(id: params[:id]).first
+  if @otserv
+    haml :otserv
+  else
+    flash[:notice] = "Invalid otserv"
     redirect '/instances'
   end
 end

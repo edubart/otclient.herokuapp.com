@@ -36,6 +36,10 @@ helpers do
     "<a href=\"/instance/#{uid}\">#{text}</a>"
   end
 
+  def otserv_link(uid, text)
+    "<a href=\"/otserv/#{uid}\">#{text}</a>"
+  end
+
   def minutes_to_units(seconds)
     '%d days, %d hours, %d minutes' %
       [24,60].reverse.inject([seconds]) {|result, unitsize|

@@ -240,6 +240,13 @@ class Instance
     self[:build_version] = report.build_version
   end
 
+  def compact_graphics_renderer
+    graphics = self[:graphics_renderer]
+    graphics = graphics.gsub("Microsoft Corporation ", "")
+    graphics = graphics.gsub("Express Chipset Family", "")
+    graphics
+  end
+
   def last_player=(player)
     self[:last_player_id] = player.id
   end
@@ -260,6 +267,14 @@ class Instance
     sum = 0
     players.each do |player|
       sum += player.minutes_played
+    end
+    sum
+  end
+
+  def self.total_minutes_played
+    sum = 0
+    Instance.all.each do |instance|
+      sum += instance.minutes_played
     end
     sum
   end

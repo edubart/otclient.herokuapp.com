@@ -1,0 +1,15 @@
+%legend Statistics
+%table.table.table-bordered.table-striped
+  %tbody
+    %tr
+      %td{:style => "width: 160px;"} Total players:
+      %td= Player.all.count
+    %tr
+      %td Total otservs:
+      %td= Otserv.all.count
+    %tr
+      %td Total instances:
+      %td= Instance.all.count
+    %tr
+      %td Total time played:
+      %td= minutes_to_units(Instance.total_minutes_played)
