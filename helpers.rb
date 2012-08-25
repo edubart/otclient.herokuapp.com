@@ -47,4 +47,8 @@ helpers do
         result
       }
   end
+
+  def h(what)
+    Rack::Utils.escape_html(what.to_s.force_encoding("cp1252").encode("utf-8"))
+  end
 end

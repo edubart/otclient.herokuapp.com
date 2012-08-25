@@ -14,10 +14,10 @@
     - @reports.each do |report|
       %tr.gradeA
         %td= report.date.asctime
-        %td= report.player_name
-        %td= report.otserv_host
+        %td=h report.player_name
+        %td=h report.otserv_host
         %td= "#{report.fps}/#{report.max_fps}"
-        %td= "#{report.graphics_vendor} #{report.graphics_renderer}"
-        %td= "#{report.graphics_version}"
-        %td= "#{report.build_version} #{report.build_revision}"
-        %td= "#{report.build_commit}"
+        %td=h "#{report.graphics_vendor} #{report.graphics_renderer}"
+        %td=h "#{report.graphics_version}"
+        %td=h "#{report.build_version} #{report.build_revision}"
+        %td=h "#{report.build_commit}"

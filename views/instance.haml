@@ -12,34 +12,34 @@
       %td= @instance.minutes_played
     %tr
       %td IP:
-      %td= @instance.ip
+      %td=h @instance.ip
     %tr
       %td Operational System:
-      %td= @instance.os
+      %td=h @instance.os
     %tr
       %td Graphics Vendor:
-      %td= @instance.graphics_vendor
+      %td=h @instance.graphics_vendor
     %tr
       %td Graphics Card:
-      %td= @instance.graphics_renderer
+      %td=h @instance.graphics_renderer
     %tr
       %td Graphics Version:
-      %td= @instance.graphics_version
+      %td=h @instance.graphics_version
     %tr
       %td Fullscreen:
       %td= @instance.fullscreen
     %tr
       %td OpenGL Painter:
-      %td= @instance.painter_engine
+      %td=h @instance.painter_engine
     %tr
       %td Build Revision:
-      %td= @instance.build_revision
+      %td=h @instance.build_revision
     %tr
       %td Build Date:
-      %td= @instance.build_date
+      %td=h @instance.build_date
     %tr
       %td Build Commit:
-      %td= @instance.build_commit
+      %td=h @instance.build_commit
     %tr
       %td Display Size:
       %td= "#{@instance.display_width}x#{@instance.display_height}"
@@ -73,8 +73,8 @@
   %tbody
     - @instance.players.each do |player|
       %tr
-        %td= player.name
-        %td= player.otserv.name
+        %td=h player.name
+        %td=h player.otserv.name
         %td= player.minutes_played
         - if player.online
           %td.on ON
