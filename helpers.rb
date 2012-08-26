@@ -53,4 +53,31 @@ helpers do
   def h(what)
     Rack::Utils.escape_html(what.to_s.force_encoding("cp1252").encode("utf-8"))
   end
+
+  def get_players_graph_data
+    data = "["
+    30.downto(1) do |i|
+      data << "#{Player.where(:created_on.lt => Time.now - (i*24*3600)).count.to_s},"
+    end
+    data << "#{Player.all.count.to_s}]"
+    data
+  end
+
+  def get_otservs_graph_data
+    data = "["
+    30.downto(1) do |i|
+      data << "#{Otserv.where(:created_on.lt => Time.now - (i*24*3600)).count.to_s},"
+    end
+    data << "#{Otserv.all.count.to_s}]"
+    data
+  end
+
+  def get_instances_graph_data
+    data = "["
+    30.downto(1) do |i|
+      data << "#{Instance.where(:created_on.lt => Time.now - (i*24*3600)).count.to_s},"
+    end
+    data << "#{Instance.all.count.to_s}]"
+    data
+  end
 end

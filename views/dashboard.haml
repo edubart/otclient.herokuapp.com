@@ -13,3 +13,48 @@
     %tr
       %td Total time played:
       %td= minutes_to_units(Instance.total_minutes_played)
+
+
+%legend Usage Graph
+
+
+#graph{:style => "height: 512px; width: 100%;"}
+
+%script{:src => 'http://code.highcharts.com/highcharts.js', :type => 'text/javascript'}
+
+
+:javascript
+  var chart1; // globally available
+  $(document).ready(function() {
+      chart1 = new Highcharts.Chart({
+         chart: {
+            renderTo: 'graph',
+            type: 'line',
+         },
+         title: {
+            text: 'Usage Last Month'
+         },
+         xAxis: {
+            type: 'datetime',
+            tickInterval: 24 * 3600 * 1000,
+            title: {
+               text: 'Days'
+            }
+         },
+         yAxis: {
+            title: {
+               text: 'Count'
+            }
+         },
+         series: [{
+            name: 'Players',
+            data: #{get_players_graph_data}
+         }, {
+            name: 'Otservs',
+            data: #{get_otservs_graph_data}
+         }, {
+            name: 'Instances',
+            data: #{get_instances_graph_data}
+         }]
+      });
+   });

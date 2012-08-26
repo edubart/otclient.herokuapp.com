@@ -6,6 +6,8 @@ require 'rack-flash'
 enable :sessions
 use Rack::Flash
 
+STARTED_TIME = Time.utc(2012,"aug",24)
+
 configure do
   Mongoid.load!('mongoid.yml')
   enable :logging, :dump_errors, :raise_errors
