@@ -1,3 +1,7 @@
+require 'mongoid'
+require 'sinatra'
+require 'haml'
+require 'rack-flash'
 require './configs'
 require './helpers'
 require './models'
