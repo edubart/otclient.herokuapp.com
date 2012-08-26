@@ -90,12 +90,6 @@ get '/dashboard' do
   haml :dashboard
 end
 
-get '/reports' do
-  login_required
-  @reports = Report.desc(:date)
-  haml :reports
-end
-
 get '/instances' do
   login_required
   @instances = Instance.desc(:updated_on)

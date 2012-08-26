@@ -1,60 +1,61 @@
-%legend Statistics
-%table.table.table-bordered.table-striped
-  %tbody
-    %tr
-      %td{:style => "width: 160px;"} Total players:
-      %td= Player.all.count
-    %tr
-      %td Total otservs:
-      %td= Otserv.all.count
-    %tr
-      %td Total instances:
-      %td= Instance.all.count
-    %tr
-      %td Total time played:
-      %td= minutes_to_units(Instance.total_minutes_played)
+.row-fluid
+  .box
+    .box-title Usage
+    .box-content.nopadding
+      #graph{:style => "height: 300px; width: 99%;"}
+      %script{:src => 'http://code.highcharts.com/highcharts.js', :type => 'text/javascript'}
 
-
-%legend Usage Graph
-
-
-#graph{:style => "height: 512px; width: 100%;"}
-
-%script{:src => 'http://code.highcharts.com/highcharts.js', :type => 'text/javascript'}
-
-
-:javascript
-  var chart1; // globally available
-  $(document).ready(function() {
-      chart1 = new Highcharts.Chart({
-         chart: {
-            renderTo: 'graph',
-            type: 'line',
-         },
-         title: {
-            text: 'Usage Last Month'
-         },
-         xAxis: {
-            type: 'datetime',
-            tickInterval: 24 * 3600 * 1000,
-            title: {
-               text: 'Days'
-            }
-         },
-         yAxis: {
-            title: {
-               text: 'Count'
-            }
-         },
-         series: [{
-            name: 'Players',
-            data: #{get_players_graph_data}
-         }, {
-            name: 'Otservs',
-            data: #{get_otservs_graph_data}
-         }, {
-            name: 'Instances',
-            data: #{get_instances_graph_data}
-         }]
-      });
-   });
+      :javascript
+        var chart1; // globally available
+        $(document).ready(function() {
+            chart1 = new Highcharts.Chart({
+               chart: {
+                  renderTo: 'graph',
+                  type: 'line',
+               },
+               title: {
+                  text: 'Usage Last Month'
+               },
+               xAxis: {
+                  type: 'datetime',
+                  tickInterval: 24 * 3600 * 1000,
+                  title: {
+                     text: 'Days'
+                  }
+               },
+               yAxis: {
+                  title: {
+                     text: 'Count'
+                  }
+               },
+               series: [{
+                  name: 'Players',
+                  data: #{get_players_graph_data}
+               }, {
+                  name: 'Otservs',
+                  data: #{get_otservs_graph_data}
+               }, {
+                  name: 'Instances',
+                  data: #{get_instances_graph_data}
+               }]
+            });
+         });
+.row-fluid
+  .span6
+    .box
+      .box-title Statistics
+      .box-content.nopadding
+        %table.table.table-bordered.table-striped
+          %tbody
+            %tr
+              %td{:style => "width: 160px;"} Total players:
+              %td= Player.all.count
+            %tr
+              %td Total otservs:
+              %td= Otserv.all.count
+            %tr
+              %td Total instances:
+              %td= Instance.all.count
+            %tr
+              %td Total time played:
+              %td= minutes_to_units(Instance.total_minutes_played)

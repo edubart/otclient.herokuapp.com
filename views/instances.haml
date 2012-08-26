@@ -1,27 +1,29 @@
-%h1 Instances
-%table.datatable.table.table-bordered.table-striped
-  %thead
-    %tr
-      %th Last Player
-      %th FPS
-      %th Graphics Card
-      %th Graphics Version
-      %th Version
-      %th Commit
-      %th Online
-  %tbody
-    - @instances.each do |instance|
-      %tr
-        - if instance.last_player
-          %td= instance_link instance.id, instance.last_player.name
-        - else
-          %td= instance_link instance.id, "null"
-        %td= "#{instance.fps}"
-        %td=h "#{instance.compact_graphics_renderer}"
-        %td=h "#{instance.graphics_version}"
-        %td=h "#{instance.build_version} #{instance.build_revision}"
-        %td=h "#{instance.build_commit}"
-        - if instance.online
-          %td.on ON
-        - else
-          %td.off OFF
+.box
+  .box-title Instances
+  .box-content.nopadding
+    %table.datatable.table.table-bordered.table-striped
+      %thead
+        %tr
+          %th Last Player
+          %th FPS
+          %th Graphics Card
+          %th Graphics Version
+          %th Version
+          %th Commit
+          %th Online
+      %tbody
+        - @instances.each do |instance|
+          %tr
+            - if instance.last_player
+              %td= instance_link instance.id, instance.last_player.name
+            - else
+              %td= instance_link instance.id, "null"
+            %td= "#{instance.fps}"
+            %td=h "#{instance.compact_graphics_renderer}"
+            %td=h "#{instance.graphics_version}"
+            %td=h "#{instance.build_version} #{instance.build_revision}"
+            %td=h "#{instance.build_commit}"
+            - if instance.online
+              %td.on ON
+            - else
+              %td.off OFF

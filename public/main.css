@@ -1,5 +1,7 @@
 body {
+  font-size: 13px;
   padding-top: 60px;
+  background-color: #F2F2F2;
 }
 
 .on {
@@ -10,41 +12,4 @@ body {
 .off {
   color: red;
   font-weight: bold;
-}
-
-.center {
-  margin: 0 auto !important;
-  float: none !important;
-}
-
-.footer {
-  padding: 30px 0;
-  margin-top: 70px;
-  border-top: 1px solid #E5E5E5;
-  background-color: whiteSmoke;
-}
-
-.footer p {
-  margin-bottom: 0;
-  color: #777;
-}
-
-.datatable {
-  margin: 0 auto;
-  clear: both;
-  width: 100%;
-}
-
-.visualize {
-  font-size: 9px;
-  font-family: Verdana, sans-serif;
-}
-
-.visualize .label {
-  font-size: 9px;
-  font-family: Verdana, sans-serif;
-  font-weight: normal;
-  text-shadow: none;
-  background: none;
-  padding: 0;
 }

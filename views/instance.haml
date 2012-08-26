@@ -1,85 +1,94 @@
-%legend Instance
-%table.table.table-bordered.table-striped
-  %tbody
-    %tr
-      %td{:style => "width: 160px;"} First seen:
-      %td= @instance.created_on
-    %tr
-      %td{:style => "width: 160px;"} Last seen:
-      %td= @instance.updated_on
-    %tr
-      %td Minutes played:
-      %td= @instance.minutes_played
-    %tr
-      %td IP:
-      %td=h @instance.ip
-    %tr
-      %td Operational System:
-      %td=h @instance.os
-    %tr
-      %td Graphics Vendor:
-      %td=h @instance.graphics_vendor
-    %tr
-      %td Graphics Card:
-      %td=h @instance.graphics_renderer
-    %tr
-      %td Graphics Version:
-      %td=h @instance.graphics_version
-    %tr
-      %td Fullscreen:
-      %td= @instance.fullscreen
-    %tr
-      %td OpenGL Painter:
-      %td=h @instance.painter_engine
-    %tr
-      %td Build Revision:
-      %td=h @instance.build_revision
-    %tr
-      %td Build Date:
-      %td=h @instance.build_date
-    %tr
-      %td Build Commit:
-      %td=h @instance.build_commit
-    %tr
-      %td Display Size:
-      %td= "#{@instance.display_width}x#{@instance.display_height}"
-    %tr
-      %td Window Size:
-      %td= "#{@instance.window_width}x#{@instance.window_height}"
-    %tr
-      %td Average FPS:
-      %td= @instance.average_fps
-    %tr
-      %td Last FPS:
-      %td= @instance.fps
-    %tr
-      %td Maximum FPS:
-      %td= @instance.max_fps
-    %tr
-      %td Minimum FPS:
-      %td= @instance.min_fps
-    %tr
-      %td FPS History:
-      %td.sparklines= @instance.fps_history * ","
+.row-fluid
+  .box
+    .box-title Instance
+    .box-content.nopadding
+      %table.table.table-bordered.table-striped
+        %tbody
+          %tr
+            %td{:style => "width: 160px;"} First seen:
+            %td= @instance.created_on
+          %tr
+            %td{:style => "width: 160px;"} Last seen:
+            %td= @instance.updated_on
+          %tr
+            %td Minutes played:
+            %td= @instance.minutes_played
+          %tr
+            %td IP:
+            %td=h @instance.ip
+          %tr
+            %td Operational System:
+            %td=h @instance.os
+          %tr
+            %td Graphics Vendor:
+            %td=h @instance.graphics_vendor
+          %tr
+            %td Graphics Card:
+            %td=h @instance.graphics_renderer
+          %tr
+            %td Graphics Version:
+            %td=h @instance.graphics_version
+          %tr
+            %td Fullscreen:
+            %td= @instance.fullscreen
+          %tr
+            %td OpenGL Painter:
+            %td=h @instance.painter_engine
+          %tr
+            %td Build Revision:
+            %td=h @instance.build_revision
+          %tr
+            %td Build Date:
+            %td=h @instance.build_date
+          %tr
+            %td Build Commit:
+            %td=h @instance.build_commit
+          %tr
+            %td Display Size:
+            %td= "#{@instance.display_width}x#{@instance.display_height}"
+          %tr
+            %td Window Size:
+            %td= "#{@instance.window_width}x#{@instance.window_height}"
+          %tr
+            %td Average FPS:
+            %td= @instance.average_fps
+          %tr
+            %td Last FPS:
+            %td= @instance.fps
+          %tr
+            %td Maximum FPS:
+            %td= @instance.max_fps
+          %tr
+            %td Minimum FPS:
+            %td= @instance.min_fps
 
-:javascript
-  $('.sparklines').sparkline('html', { chartRangeMin: 0, type: 'bar', barWidth: 8, width: 512, height: '64' });
+.row-fluid
+  .box
+    .box-title FPS History
+    .box-content
+      .sparklines= @instance.fps_history * ","
+    :javascript
+      $('.sparklines').sparkline('html', { chartRangeMin: 0, type: 'bar', barWidth: 8, width: 512, height: '64' });
 
-%legend Players
-%table.table.table-bordered.table-striped
-  %thead
-    %tr
-      %th Player Name
-      %th Otserv
-      %th Minutes Played
-      %th Online
-  %tbody
-    - @instance.players.each do |player|
-      %tr
-        %td=h player.name
-        %td= otserv_link player.otserv.id, player.otserv.name
-        %td= player.minutes_played
-        - if player.online
-          %td.on ON
-        - else
-          %td.off OFF
+
+.row-fluid
+  .box
+    .box-title Players
+    .box-content.nopadding
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th Player Name
+            %th Otserv
+            %th Minutes Played
+            %th Online
+        %tbody
+          - @instance.players.each do |player|
+            %tr
+              %td=h player.name
+              %td= otserv_link player.otserv.id, player.otserv.name
+              %td= player.minutes_played
+              - if player.online
+                %td.on ON
+              - else
+                %td.off OFF

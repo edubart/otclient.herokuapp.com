@@ -1,46 +1,50 @@
-%legend Otserv
-%table.table.table-bordered.table-striped
-  %tbody
-    %tr
-      %td{:style => "width: 160px;"} First seen:
-      %td= @otserv.created_on
-    %tr
-      %td Last seen:
-      %td= @otserv.updated_on
-    %tr
-      %td Name:
-      %td=h @otserv.name
-    %tr
-      %td Hosts:
-      %td=h(@otserv.hosts * " ")
-    %tr
-      %td Port:
-      %td= @otserv.port
-    %tr
-      %td Minutes played:
-      %td= @otserv.minutes_played
-    %tr
-      %td Total players:
-      %td= @otserv.players.count
-    %tr
-      %td Protocol:
-      %td= @otserv.protocol
+.box
+  .box-title Otserv
+  .box-content.nopadding
+    %table.table.table-bordered.table-striped
+      %tbody
+        %tr
+          %td{:style => "width: 160px;"} First seen:
+          %td= @otserv.created_on
+        %tr
+          %td Last seen:
+          %td= @otserv.updated_on
+        %tr
+          %td Name:
+          %td=h @otserv.name
+        %tr
+          %td Hosts:
+          %td=h(@otserv.hosts * " ")
+        %tr
+          %td Port:
+          %td= @otserv.port
+        %tr
+          %td Minutes played:
+          %td= @otserv.minutes_played
+        %tr
+          %td Total players:
+          %td= @otserv.players.count
+        %tr
+          %td Protocol:
+          %td= @otserv.protocol
 
-%legend Players
-%table.table.table-bordered.table-striped
-  %thead
-    %tr
-      %th Player Name
-      %th Otserv
-      %th Minutes Played
-      %th Online
-  %tbody
-    - @otserv.players.each do |player|
-      %tr
-        %td= instance_link player.instance.id, player.name
-        %td=h player.otserv.name
-        %td= player.minutes_played
-        - if player.online
-          %td.on ON
-        - else
-          %td.off OFF
+.box
+  .box-title Players
+  .box-content.nopadding
+    %table.table.table-bordered.table-striped
+      %thead
+        %tr
+          %th Player Name
+          %th Otserv
+          %th Minutes Played
+          %th Online
+      %tbody
+        - @otserv.players.each do |player|
+          %tr
+            %td= instance_link player.instance.id, player.name
+            %td=h player.otserv.name
+            %td= player.minutes_played
+            - if player.online
+              %td.on ON
+            - else
+              %td.off OFF

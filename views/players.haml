@@ -1,18 +1,20 @@
-%h1 Players
-%table.datatable.table.table-bordered.table-striped
-  %thead
-    %tr
-      %th Player Name
-      %th Otserv
-      %th Minutes Played
-      %th Online
-  %tbody
-    - @players.each do |player|
-      %tr
-        %td= instance_link player.instance.id, player.name
-        %td= otserv_link player.otserv.id, player.otserv.name
-        %td= player.minutes_played
-        - if player.online
-          %td.on ON
-        - else
-          %td.off OFF
+.box
+  .box-title Players
+  .box-content.nopadding
+    %table.datatable.table.table-bordered.table-striped
+      %thead
+        %tr
+          %th Player Name
+          %th Otserv
+          %th Minutes Played
+          %th Online
+      %tbody
+        - @players.each do |player|
+          %tr
+            %td= instance_link player.instance.id, player.name
+            %td= otserv_link player.otserv.id, player.otserv.name
+            %td= player.minutes_played
+            - if player.online
+              %td.on ON
+            - else
+              %td.off OFF

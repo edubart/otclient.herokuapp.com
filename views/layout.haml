@@ -4,27 +4,22 @@
     %title Otclient Stats
     = haml :_head, :layout => false
   %body
-    .navbar.navbar-inverse.navbar-fixed-top
+    .navbar.navbar-fixed-top
       .navbar-inner
-        .container
-          .nav-collapse.collapse
-            %ul.nav
-              = nav_link '/dashboard', 'Dashboard'
-              = nav_link '/instances', 'Instances'
-              = nav_link '/otservs', 'Otservs'
-              = nav_link '/players', 'Players'
+        .container-fluid
+          %a.brand{:href => '/'} otclient stats
+          %ul.nav
+            = nav_link '/dashboard', 'Dashboard'
+            = nav_link '/instances', 'Instances'
+            = nav_link '/otservs', 'Otservs'
+            = nav_link '/players', 'Players'
 
           .btn.pull-right= link_to '/logout', 'Logout'
-    .container
+    .container-fluid
       - if flash[:notice]
         .alert
           %button{:type=>"button", :class=>"close", :'data-dismiss'=>"alert"}×
           = flash[:notice]
-      =yield
+      .row-fluid
+        =yield
       .clear
-    %footer.footer
-      .container
-        %p.pull-right
-          %a{:href => '#'} Back to top
-        %p
-          Created by edubart
