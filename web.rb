@@ -1,11 +1,6 @@
-require 'sinatra'
-require 'haml'
-require 'rack-flash'
 require './configs'
 require './helpers'
 require './models'
-
-use Rack::Flash
 
 # Index
 get '/' do
@@ -21,7 +16,6 @@ post '/report' do
   report = Report.new(params)
   report.date = Time.now
   report.ip = request.ip
-  #report.save()
 
   otserv = nil
   world = nil
@@ -37,6 +31,7 @@ post '/report' do
   end
 
   if report.otserv_host and report.otserv_host.length > 0 then
+    report.otserv_host = report.otserv_host.downcase
     otserv = Otserv.get(report.otserv_host)
     otserv.process_report(report)
     otserv.save

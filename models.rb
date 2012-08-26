@@ -121,12 +121,22 @@ class World
   end
 end
 
+class PlayerReport
+  include Mongoid::Document
+
+  embedded_in :player
+
+  field :date, type: Time
+end
+
 class Player
   include Mongoid::Document
 
   belongs_to :world
   belongs_to :otserv
   belongs_to :instance
+  embeds_many :player_reports
+
   field :created_on, type: Time, default: -> { Time.now }
   field :updated_on, type: Time, default: -> { Time.now }
   field :updates_count, type: Integer, default: -> { 0 }
@@ -145,6 +155,7 @@ class Player
   def process_report(report)
     self[:updated_on] = Time.now
     self[:updates_count] = self[:updates_count].next
+    player_reports.push(PlayerReport.new(date: Time.now))
   end
 
   def minutes_played
@@ -216,7 +227,7 @@ class Instance
   end
 
   def process_report(report)
-    fpsh = Array.new(self[:fps_history].last(59))
+    fpsh = Array.new(self[:fps_history].last(99))
     fpsh << report.fps
 
     self[:updated_on] = Time.now
