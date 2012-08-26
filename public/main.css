@@ -34,3 +34,17 @@ body {
   clear: both;
   width: 100%;
 }
+
+.visualize {
+  font-size: 9px;
+  font-family: Verdana, sans-serif;
+}
+
+.visualize .label {
+  font-size: 9px;
+  font-family: Verdana, sans-serif;
+  font-weight: normal;
+  text-shadow: none;
+  background: none;
+  padding: 0;
+}

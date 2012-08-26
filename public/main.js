@@ -4,5 +4,6 @@ $(document).ready(function() {
     "aaSorting": [],
   });
 
-  $(".alert").alert();
+  $('.alert').alert();
+  $('.visualize').visualize();
 });

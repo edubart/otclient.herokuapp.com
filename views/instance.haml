@@ -2,10 +2,10 @@
 %table.table.table-bordered.table-striped
   %tbody
     %tr
-      %td{:style => "width: 160px;"} First login:
+      %td{:style => "width: 160px;"} First seen:
       %td= @instance.created_on
     %tr
-      %td{:style => "width: 160px;"} last login:
+      %td{:style => "width: 160px;"} Last seen:
       %td= @instance.updated_on
     %tr
       %td Minutes played:
@@ -60,7 +60,10 @@
       %td= @instance.min_fps
     %tr
       %td FPS History:
-      %td= @instance.fps_history * " "
+      %td.sparklines= @instance.fps_history * ","
+
+:javascript
+  $('.sparklines').sparkline('html', { chartRangeMin: 0, type: 'bar', barWidth: 8, width: 512, height: '64' });
 
 %legend Players
 %table.table.table-bordered.table-striped
