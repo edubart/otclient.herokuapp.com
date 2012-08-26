@@ -155,7 +155,7 @@ class Player
   def process_report(report)
     self[:updated_on] = Time.now
     self[:updates_count] = self[:updates_count].next
-    player_reports.push(PlayerReport.create(date: Time.now))
+    player_reports.push(PlayerReport.create(player: self, date: Time.now))
   end
 
   def minutes_played
