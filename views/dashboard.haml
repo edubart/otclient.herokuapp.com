@@ -1,108 +1,109 @@
 %script{:src => 'http://code.highcharts.com/highcharts.js', :type => 'text/javascript'}
 
 .row-fluid
-  .box
-    .box-title Usage
-    .box-content.nopadding
-      #graph{:style => "height: 300px; width: 99%;"}
+  .span6
+    .box
+      .box-title Usage
+      .box-content.nopadding
+        #graph{:style => "height: 300px; width: 99%;"}
 
-      :javascript
-        var chart1; // globally available
-        $(document).ready(function() {
-            chart1 = new Highcharts.Chart({
-               chart: {
-                  renderTo: 'graph',
-                  type: 'line',
-               },
-               title: {
-                  text: 'Usage Last Month'
-               },
-               xAxis: {
-                  type: 'datetime',
-                  tickInterval: 24 * 3600 * 1000,
-                  title: {
-                     text: 'Days'
-                  }
-               },
-               yAxis: {
-                  title: {
-                     text: 'Count'
-                  }
-               },
-               series: [{
-                  name: 'Players',
-                  data: #{get_players_graph_data}
-               }, {
-                  name: 'Otservs',
-                  data: #{get_otservs_graph_data}
-               }, {
-                  name: 'Instances',
-                  data: #{get_instances_graph_data}
-               }]
-            });
-         });
-.row-fluid
-  .box
-    .box-title FPS Distribution
-    .box-content.nopadding
-      #fps_graph{:style => "height: 300px; width: 99%;"}
-
-      :javascript
-        $(function () {
-            var chart;
-            $(document).ready(function() {
-                chart = new Highcharts.Chart({
-                    chart: {
-                        renderTo: 'fps_graph',
-                        zoomType: 'x',
-                        type: 'area'
-                    },
+        :javascript
+          var chart1; // globally available
+          $(document).ready(function() {
+              chart1 = new Highcharts.Chart({
+                 chart: {
+                    renderTo: 'graph',
+                    type: 'line',
+                 },
+                 title: {
+                    text: 'Usage Last Month'
+                 },
+                 xAxis: {
+                    type: 'datetime',
+                    tickInterval: 24 * 3600 * 1000,
                     title: {
-                        text: 'FPS distribution'
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Percentage'
-                        },
-                        min: 0,
-                        max: 100
-                    },
-                    xAxis: {
-                        title: {
-                            text: 'Average FPS'
-                        },
-                        gridLineWidth: 1,
-                    },
-                    tooltip: {
-                        formatter: function() {
-                            return '<b>' + Highcharts.numberFormat(this.y, 0) + '%</b>of players have fps less than <b>' + this.x + '</b>';
-                        }
-                    },
-                    plotOptions: {
-                        area: {
-                            marker: {
-                                enabled: false,
-                                symbol: 'circle',
-                                radius: 2,
-                                states: {
-                                    hover: {
-                                        enabled: true
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    series: [{
-                        name: 'Percentage',
-                        data: #{get_fps_graph_data}
-                    }]
-                });
-            });
+                       text: 'Days'
+                    }
+                 },
+                 yAxis: {
+                    title: {
+                       text: 'Count'
+                    }
+                 },
+                 series: [{
+                    name: 'Players',
+                    data: #{get_players_graph_data}
+                 }, {
+                    name: 'Otservs',
+                    data: #{get_otservs_graph_data}
+                 }, {
+                    name: 'Instances',
+                    data: #{get_instances_graph_data}
+                 }]
+              });
+           });
+  .span6
+    .box
+      .box-title FPS Distribution
+      .box-content.nopadding
+        #fps_graph{:style => "height: 300px; width: 99%;"}
 
-        });
+        :javascript
+          $(function () {
+              var chart;
+              $(document).ready(function() {
+                  chart = new Highcharts.Chart({
+                      chart: {
+                          renderTo: 'fps_graph',
+                          zoomType: 'x',
+                          type: 'area'
+                      },
+                      title: {
+                          text: 'FPS distribution'
+                      },
+                      legend: {
+                          enabled: false
+                      },
+                      yAxis: {
+                          title: {
+                              text: 'Percentage'
+                          },
+                          min: 0,
+                          max: 100
+                      },
+                      xAxis: {
+                          title: {
+                              text: 'Average FPS'
+                          },
+                          gridLineWidth: 1,
+                      },
+                      tooltip: {
+                          formatter: function() {
+                              return '<b>' + Highcharts.numberFormat(this.y, 0) + '%</b>of players have fps less than <b>' + this.x + '</b>';
+                          }
+                      },
+                      plotOptions: {
+                          area: {
+                              marker: {
+                                  enabled: false,
+                                  symbol: 'circle',
+                                  radius: 2,
+                                  states: {
+                                      hover: {
+                                          enabled: true
+                                      }
+                                  }
+                              }
+                          }
+                      },
+                      series: [{
+                          name: 'Percentage',
+                          data: #{get_fps_graph_data}
+                      }]
+                  });
+              });
+
+          });
 .row-fluid
   .span6
     .box
