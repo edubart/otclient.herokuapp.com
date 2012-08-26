@@ -5,7 +5,7 @@
       %thead
         %tr
           %th Last Player
-          %th FPS
+          %th Average FPS
           %th Graphics Card
           %th Graphics Version
           %th Version
@@ -18,7 +18,7 @@
               %td= instance_link instance.id, instance.last_player.name
             - else
               %td= instance_link instance.id, "null"
-            %td= "#{instance.fps}"
+            %td= "#{instance.average_fps}"
             %td=h "#{instance.compact_graphics_renderer}"
             %td=h "#{instance.graphics_version}"
             %td=h "#{instance.build_version} #{instance.build_revision}"

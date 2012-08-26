@@ -80,4 +80,19 @@ helpers do
     data << "#{Instance.all.count.to_s}]"
     data
   end
+
+  def get_fps_graph_data
+    fpses = Array.new
+    Instance.all.each do |player|
+      fpses += player.fps_history
+    end
+    data = "["
+    1.upto(1000) do |i|
+      percent = ((fpses.count { |fps| fps <= i }).to_f * 100.0)/fpses.count
+      data << "#{percent},"
+    end
+    data = data.chomp(",")
+    data << "]"
+    data
+  end
 end
