@@ -11,35 +11,40 @@
           var chart1; // globally available
           $(document).ready(function() {
               chart1 = new Highcharts.Chart({
-                 chart: {
-                    renderTo: 'graph',
-                    type: 'line',
-                 },
-                 title: {
-                    text: 'Usage Last Month'
-                 },
-                 xAxis: {
-                    type: 'datetime',
-                    tickInterval: 24 * 3600 * 1000,
-                    title: {
-                       text: 'Days'
+                chart: {
+                  renderTo: 'graph',
+                  type: 'line',
+                },
+                title: {
+                  text: ''
+                },
+                xAxis: {
+                  type: 'datetime',
+                  title: {
+                     text: 'Days'
+                  }
+                },
+                yAxis: {
+                  title: {
+                     text: 'Count'
+                  }
+                },
+                plotOptions: {
+                    line: {
+                      pointInterval: 24 * 3600 * 1000,
+                      pointStart: Date.UTC(#{(Time.now - 30*24*3600).year}, #{(Time.now - 30*24*3600).month - 1}, #{(Time.now - 30*24*3600).day}),
                     }
-                 },
-                 yAxis: {
-                    title: {
-                       text: 'Count'
-                    }
-                 },
-                 series: [{
-                    name: 'Players',
-                    data: #{get_players_graph_data}
-                 }, {
-                    name: 'Otservs',
-                    data: #{get_otservs_graph_data}
-                 }, {
-                    name: 'Instances',
-                    data: #{get_instances_graph_data}
-                 }]
+                },
+                series: [{
+                  name: 'Players',
+                  data: #{get_players_graph_data}
+                }, {
+                  name: 'Otservs',
+                  data: #{get_otservs_graph_data}
+                }, {
+                  name: 'Instances',
+                  data: #{get_instances_graph_data}
+                }]
               });
            });
   .span6
@@ -59,7 +64,7 @@
                           type: 'area'
                       },
                       title: {
-                          text: 'FPS distribution'
+                          text: ''
                       },
                       legend: {
                           enabled: false

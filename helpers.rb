@@ -75,6 +75,7 @@ helpers do
   def get_instances_graph_data
     data = "["
     30.downto(1) do |i|
+      num = Instance.where(:created_on.lt => Time.now - (i*24*3600)).count
       data << "#{Instance.where(:created_on.lt => Time.now - (i*24*3600)).count.to_s},"
     end
     data << "#{Instance.all.count.to_s}]"

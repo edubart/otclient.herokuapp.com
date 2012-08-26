@@ -1,5 +1,7 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700|Montserrat:400,700);
 body {
-  font-size: 13px;
+  font-family:"Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
   padding-top: 60px;
   background-color: #F2F2F2;
 }
