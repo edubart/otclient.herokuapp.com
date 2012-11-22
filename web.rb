@@ -92,7 +92,7 @@ end
 
 get '/instances' do
   login_required
-  @instances = Instance.desc(:updated_on)
+  @instances = Instance.desc(:updated_on).limit(100)
   haml :instances
 end
 
@@ -120,12 +120,12 @@ end
 
 get '/players' do
   login_required
-  @players = Player.all.desc(:updated_on)
+  @players = Player.all.desc(:updated_on).limit(100)
   haml :players
 end
 
 get '/otservs' do
   login_required
-  @otservs = Otserv.all.desc(:updated_on)
+  @otservs = Otserv.all.desc(:updated_on).limit(100)
   haml :otservs
 end
