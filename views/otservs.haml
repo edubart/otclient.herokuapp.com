@@ -1,6 +1,9 @@
+%span= will_paginate @otservs, :renderer => BootstrapPagination::Sinatra
+
 .box
   .box-title Otservs
   .box-content.nopadding
+    = haml :_search, :layout => false
     %table.datatable.table.table-bordered.table-striped
       %thead
         %tr

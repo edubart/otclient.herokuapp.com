@@ -1,7 +1,7 @@
 development:
   sessions:
     default:
-      database: mongoid_dev
+      database: otclient
       hosts:
         - localhost:27017
 production:

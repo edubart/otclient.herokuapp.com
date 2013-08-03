@@ -121,21 +121,12 @@ class World
   end
 end
 
-class PlayerReport
-  include Mongoid::Document
-
-  embedded_in :player
-
-  field :date, type: Time
-end
-
 class Player
   include Mongoid::Document
 
   belongs_to :world
   belongs_to :otserv
   belongs_to :instance
-  embeds_many :player_reports
 
   field :created_on, type: Time, default: -> { Time.now }
   field :updated_on, type: Time, default: -> { Time.now }
@@ -155,7 +146,6 @@ class Player
   def process_report(report)
     self[:updated_on] = Time.now
     self[:updates_count] = self[:updates_count].next
-    player_reports.push(PlayerReport.create(player: self, date: Time.now))
   end
 
   def minutes_played
@@ -198,11 +188,13 @@ class Instance
   index({ uid: 1 }, { unique: true })
 
   def average_fps
+    count = fps_history.count
+    if count == 0 then return 0 end
     sum = 0
     fps_history.each do |fps|
       sum += fps
     end
-    return sum/fps_history.count
+    return sum/count
   end
 
   def min_fps
@@ -252,7 +244,7 @@ class Instance
   end
 
   def compact_graphics_renderer
-    graphics = self[:graphics_renderer].force_encoding("cp1252")
+    graphics = self[:graphics_renderer].to_s.force_encoding("cp1252")
     graphics = graphics.gsub("Microsoft Corporation ", "")
     graphics = graphics.gsub("Express Chipset Family", "")
     graphics

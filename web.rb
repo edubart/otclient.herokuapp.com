@@ -2,6 +2,8 @@ require 'mongoid'
 require 'sinatra'
 require 'haml'
 require 'rack-flash'
+require 'will_paginate_mongoid'
+require 'will_paginate-bootstrap'
 require './configs'
 require './helpers'
 require './models'
@@ -9,7 +11,7 @@ require './models'
 # Index
 get '/' do
   if logged_in? then
-    redirect '/dashboard'
+    redirect '/instances'
   else
     redirect '/login'
   end
@@ -34,13 +36,17 @@ post '/report' do
     next
   end
 
+  if report.world_host == '127.0.0.1' or report.world_host == 'localhost' or
+     report.otserv_host == '127.0.0.1' or report.otserv_host == 'localhost' then
+    next
+  end
+
   if report.otserv_host and report.otserv_host.length > 0 then
     report.otserv_host = report.otserv_host.downcase
     otserv = Otserv.get(report.otserv_host)
     otserv.process_report(report)
     otserv.save
   end
-
   if otserv and report.world_name and report.world_name.length > 0 then
     world = World.get(otserv, report.world_name)
     world.process_report(report)
@@ -92,7 +98,7 @@ end
 
 get '/instances' do
   login_required
-  @instances = Instance.desc(:updated_on).limit(100)
+  @instances = Instance.desc(:updated_on).paginate(:page => params[:page], :per_page => 100)
   haml :instances
 end
 
@@ -120,12 +126,20 @@ end
 
 get '/players' do
   login_required
-  @players = Player.all.desc(:updated_on).limit(100)
+  if params[:search] then
+    @players = Player.where(:name => /.*#{params[:search]}.*/i).desc(:updated_on).paginate(:page => params[:page], :per_page => 100)
+  else
+    @players = Player.desc(:updated_on).paginate(:page => params[:page], :per_page => 100)
+  end
   haml :players
 end
 
 get '/otservs' do
   login_required
-  @otservs = Otserv.all.desc(:updated_on).limit(100)
+  if params[:search] then
+    @otservs = Otserv.where(:name => /.*#{params[:search]}.*/i).desc(:updated_on).paginate(:page => params[:page], :per_page => 100)
+  else
+    @otservs = Otserv.desc(:updated_on).paginate(:page => params[:page], :per_page => 100)
+  end
   haml :otservs
 end

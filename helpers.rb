@@ -56,8 +56,8 @@ helpers do
 
   def get_players_graph_data
     data = "["
-    30.downto(1) do |i|
-      data << "#{Player.where(:created_on.lt => Time.now - (i*24*3600)).count.to_s},"
+    48.downto(1) do |i|
+      data << "#{Player.where(:created_on.lt => Time.now - (i*7*24*3600)).count.to_s},"
     end
     data << "#{Player.all.count.to_s}]"
     data
@@ -65,8 +65,8 @@ helpers do
 
   def get_otservs_graph_data
     data = "["
-    30.downto(1) do |i|
-      data << "#{Otserv.where(:created_on.lt => Time.now - (i*24*3600)).count.to_s},"
+    48.downto(1) do |i|
+      data << "#{Otserv.where(:created_on.lt => Time.now - (i*7*24*3600)).count.to_s},"
     end
     data << "#{Otserv.all.count.to_s}]"
     data
@@ -74,26 +74,11 @@ helpers do
 
   def get_instances_graph_data
     data = "["
-    30.downto(1) do |i|
-      num = Instance.where(:created_on.lt => Time.now - (i*24*3600)).count
-      data << "#{Instance.where(:created_on.lt => Time.now - (i*24*3600)).count.to_s},"
+    48.downto(1) do |i|
+      num = Instance.where(:created_on.lt => Time.now - (i*7*24*3600)).count
+      data << "#{Instance.where(:created_on.lt => Time.now - (i*7*24*3600)).count.to_s},"
     end
     data << "#{Instance.all.count.to_s}]"
-    data
-  end
-
-  def get_fps_graph_data
-    fpses = Array.new
-    Instance.all.each do |player|
-      fpses += player.fps_history
-    end
-    data = "["
-    1.upto(1000) do |i|
-      percent = ((fpses.count { |fps| fps <= i }).to_f * 100.0)/fpses.count
-      data << "#{percent},"
-    end
-    data = data.chomp(",")
-    data << "]"
     data
   end
 end

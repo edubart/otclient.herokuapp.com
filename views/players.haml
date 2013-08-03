@@ -1,6 +1,9 @@
+%span= will_paginate @players, :renderer => BootstrapPagination::Sinatra
+
 .box
   .box-title Players
   .box-content.nopadding
+    = haml :_search, :layout => false
     %table.datatable.table.table-bordered.table-striped
       %thead
         %tr
@@ -11,7 +14,8 @@
       %tbody
         - @players.each do |player|
           %tr
-            %td= instance_link player.instance.id, player.name
+            - unless player.instance.nil?
+              %td= instance_link player.instance.id, player.name
             %td= otserv_link player.otserv.id, player.otserv.name
             %td= player.minutes_played
             - if player.online
