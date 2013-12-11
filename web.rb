@@ -43,6 +43,7 @@ post '/report' do
 
   if not report.otserv_host or report.otserv_host.length == 0 then
     report.otserv_host = "Dummy"
+  end
 
     report.otserv_host = report.otserv_host.downcase
     otserv = Otserv.get(report.otserv_host)
