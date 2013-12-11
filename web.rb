@@ -41,12 +41,14 @@ post '/report' do
     next
   end
 
-  if report.otserv_host and report.otserv_host.length > 0 then
+  if not report.otserv_host or report.otserv_host.length == 0 then
+    report.otserv_host = "Dummy"
+
     report.otserv_host = report.otserv_host.downcase
     otserv = Otserv.get(report.otserv_host)
     otserv.process_report(report)
     otserv.save
-  end
+
   if otserv and report.world_name and report.world_name.length > 0 then
     world = World.get(otserv, report.world_name)
     world.process_report(report)
